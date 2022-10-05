@@ -6,20 +6,8 @@ import { useRouter } from "next/router";
 import { actionColumn } from "../src/components/Table/actionColumn";
 import { getPools } from "../src/service/api";
 
-export async function getServerSideProps() {
-  const pools = await getPools();
-
-  return {
-    props: {
-      pools: pools.data,
-    },
-  };
-}
-
 export default function Index({ pools }: any) {
   const router = useRouter();
-
-  console.log(pools);
 
   const columns = [
     actionColumn((item: any) => {
@@ -94,6 +82,17 @@ export default function Index({ pools }: any) {
       </Box>
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  const pools = await getPools();
+
+  return {
+    props: {
+      pools: pools.data,
+    },
+    revalidate: 300,
+  };
 }
 
 function toPercentage(val: number) {
