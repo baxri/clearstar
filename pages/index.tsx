@@ -12,8 +12,8 @@ export default function Index({ pools }: any) {
   const columns = [
     actionColumn((item: any) => {
       router.push({
-        pathname: "/[id]",
-        query: { id: item.symbol },
+        pathname: "/[symbol]",
+        query: { symbol: item.symbol },
       });
     }),
     {

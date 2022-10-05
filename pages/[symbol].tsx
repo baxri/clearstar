@@ -6,17 +6,8 @@ import { Container, Typography } from "@mui/material";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { getPool } from "../src/service/api";
-
-export async function getServerSideProps(context: any) {
-  const pool = await getPool(context.params.id);
-
-  return {
-    props: {
-      pool: pool.data,
-    },
-  };
-}
+import { getPool, getPools } from "../src/service/api";
+import { GetStaticPaths } from "next";
 
 export default function History({ pool }: any) {
   const options = {
@@ -49,4 +40,30 @@ export default function History({ pool }: any) {
       <HighchartsReact highcharts={Highcharts} options={options} />
     </Container>
   );
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const pools = await getPools();
+
+  const paths = pools.data.map((pool: any) => ({
+    params: {
+      symbol: pool.symbol,
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export async function getStaticProps(context: any) {
+  const pool = await getPool(context.params.symbol);
+
+  return {
+    props: {
+      pool: pool.data,
+    },
+    revalidate: 300,
+  };
 }
