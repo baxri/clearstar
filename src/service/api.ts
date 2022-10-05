@@ -1,12 +1,10 @@
 import axios from "axios";
 
 export async function getPools() {
-  return await axios.get(
-    "https://ye47jgfdotegszjrcpmgydjkfu0mtodv.lambda-url.us-east-1.on.aws/"
-  );
+  return await axios.get(process.env.POOLS_ENDPOINT as string);
 }
 export async function getPool(name: string) {
   return await axios.get(
-    `https://eeug7quabbqg6rr4pgq7akj5za0nunpj.lambda-url.us-east-1.on.aws/?pool_name=${name}`
+    `${process.env.POOL_HISTORY_ENDPINT}?pool_name=${name}`
   );
 }

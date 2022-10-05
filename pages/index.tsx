@@ -1,21 +1,13 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
-import { Container, Typography } from "@mui/material";
-import { useRouter } from "next/router";
 import { actionColumn } from "../src/components/Table/actionColumn";
 import { getPools } from "../src/service/api";
+import Layout from "../src/components/Layout";
 
 export default function Index({ pools }: any) {
-  const router = useRouter();
-
   const columns = [
-    actionColumn((item: any) => {
-      router.push({
-        pathname: "/[symbol]",
-        query: { symbol: item.symbol },
-      });
-    }),
+    actionColumn(),
     {
       field: "symbol",
       headerName: "Pool",
@@ -59,15 +51,7 @@ export default function Index({ pools }: any) {
   ];
 
   return (
-    <Container>
-      <Box
-        sx={{ height: 100 }}
-        display="flex"
-        alignItems="center"
-        justifyContent="flex-start"
-      >
-        <Typography variant="h3">Pools</Typography>
-      </Box>
+    <Layout title="Pools">
       <Box sx={{ height: 400 }}>
         <DataGrid
           getRowId={(item) => item.symbol}
@@ -80,7 +64,7 @@ export default function Index({ pools }: any) {
           experimentalFeatures={{ newEditingApi: true }}
         />
       </Box>
-    </Container>
+    </Layout>
   );
 }
 

@@ -1,10 +1,9 @@
 import { Search } from "@mui/icons-material";
 import { IconButton, Tooltip } from "@mui/material";
 import { GridValidRowModel } from "@mui/x-data-grid";
+import Link from "next/link";
 
-export function actionColumn<T extends GridValidRowModel>(
-  onViewDetailsClick: (row: T) => void
-) {
+export function actionColumn<T extends GridValidRowModel>() {
   return {
     sortable: false,
     flex: 0,
@@ -17,11 +16,11 @@ export function actionColumn<T extends GridValidRowModel>(
     maxWidth: 50,
     renderCell: ({ row }: any) => (
       <Tooltip title="Show Details">
-        <IconButton
-          onClick={() => onViewDetailsClick && onViewDetailsClick(row)}
-        >
-          <Search color="secondary" fontSize="inherit" />
-        </IconButton>
+        <Link href={`/${row.symbol}`}>
+          <IconButton>
+            <Search color="secondary" fontSize="inherit" />
+          </IconButton>
+        </Link>
       </Tooltip>
     ),
   };

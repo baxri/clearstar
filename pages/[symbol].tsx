@@ -1,13 +1,11 @@
 import * as React from "react";
-import { useRouter } from "next/router";
 
-import Box from "@mui/material/Box";
-import { Container, Typography } from "@mui/material";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 import { getPool, getPools } from "../src/service/api";
 import { GetStaticPaths } from "next";
+import Layout from "../src/components/Layout";
 
 export default function History({ pool }: any) {
   const options = {
@@ -28,17 +26,9 @@ export default function History({ pool }: any) {
   };
 
   return (
-    <Container>
-      <Box
-        sx={{ height: 100 }}
-        display="flex"
-        alignItems="center"
-        justifyContent="flex-start"
-      >
-        <Typography variant="h3">History of Pools</Typography>
-      </Box>
+    <Layout title="History of Pools">
       <HighchartsReact highcharts={Highcharts} options={options} />
-    </Container>
+    </Layout>
   );
 }
 
