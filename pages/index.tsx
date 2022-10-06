@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { actionColumn } from "../src/components/Table/actionColumn";
 import { getPools } from "../src/service/api";
 import Layout from "../src/components/Layout";
+import { Typography } from "@mui/material";
 
 export default function Index({ pools }: any) {
   const columns = [
@@ -19,21 +20,33 @@ export default function Index({ pools }: any) {
       headerName: "APR 1D",
       width: 150,
       editable: false,
-      valueGetter: (params: any) => toPercentage(params.row.d_apr),
+      renderCell: ({ row }: any) => (
+        <Typography color={getColor(row.d_apr)}>
+          {toPercentage(row.d_apr)}
+        </Typography>
+      ),
     },
     {
       field: "w_apr",
       headerName: "APR 1W",
       width: 150,
       editable: false,
-      valueGetter: (params: any) => toPercentage(params.row.w_apr),
+      renderCell: ({ row }: any) => (
+        <Typography color={getColor(row.w_apr)}>
+          {toPercentage(row.w_apr)}
+        </Typography>
+      ),
     },
     {
       field: "m_apr",
       headerName: "APR 1M",
       width: 150,
       editable: false,
-      valueGetter: (params: any) => toPercentage(params.row.m_apr),
+      renderCell: ({ row }: any) => (
+        <Typography color={getColor(row.m_apr)}>
+          {toPercentage(row.m_apr)}
+        </Typography>
+      ),
     },
     {
       field: "tvl",
@@ -81,4 +94,7 @@ export async function getStaticProps() {
 
 function toPercentage(val: number) {
   return `${(val * 100).toFixed(2)}%`;
+}
+function getColor(value: number) {
+  return value < 0 ? "error" : "secondary";
 }

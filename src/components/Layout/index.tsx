@@ -1,9 +1,13 @@
 import { Box, Container, Typography } from "@mui/material";
+import { Favorite } from "@mui/icons-material";
 import React from "react";
 
 export default function Layout({ title, subTitle, children }: any) {
   return (
     <Container>
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Typography color="error">Market Oportunity</Typography>
+      </Box>
       <Box
         sx={{ height: 100 }}
         display="flex"
@@ -16,8 +20,11 @@ export default function Layout({ title, subTitle, children }: any) {
         {subTitle}
       </Typography>
       {children}
+
       <Box display="flex" justifyContent="center" mt={4}>
-        <Typography color="red">Market Oportunity</Typography>
+        Created with {` `}{" "}
+        <Favorite sx={{ margin: "0 5px 0 5px" }} color="error" /> {` `} by
+        George
       </Box>
     </Container>
   );
