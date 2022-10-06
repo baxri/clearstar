@@ -26,7 +26,7 @@ export default function History({ pool }: any) {
   };
 
   return (
-    <Layout title="History of Pools" subTitle="Historical TVL - Last 7 days">
+    <Layout title="History of Pool TVL" subTitle="Historical TVL - Last 7 days">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </Layout>
   );
