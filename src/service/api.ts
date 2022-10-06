@@ -5,6 +5,6 @@ export async function getPools() {
 }
 export async function getPool(name: string) {
   return await axios.get(
-    `${process.env.POOL_HISTORY_ENDPINT}?pool_name=${name}`
+    `${process.env.POOL_HISTORY_ENDPINT}?pool_name=${encodeURIComponent(name)}`
   );
 }
