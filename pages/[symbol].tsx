@@ -10,7 +10,7 @@ import Layout from "../src/components/Layout";
 export default function History({ pool }: any) {
   const options = {
     title: {
-      text: "historical TVL - Last 7 days",
+      text: "Historical TVL - Last 7 days",
     },
     xAxis: {
       type: "datetime",
@@ -26,7 +26,7 @@ export default function History({ pool }: any) {
   };
 
   return (
-    <Layout title="History of Pools">
+    <Layout title="History of Pools" subTitle="Historical TVL - Last 7 days">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </Layout>
   );

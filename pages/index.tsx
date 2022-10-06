@@ -51,7 +51,7 @@ export default function Index({ pools }: any) {
   ];
 
   return (
-    <Layout title="Pools">
+    <Layout title="Pools" subTitle="List of pools">
       <Box sx={{ height: 400 }}>
         <DataGrid
           getRowId={(item) => item.symbol}

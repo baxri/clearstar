@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 
-export default function Layout({ title, children }: any) {
+export default function Layout({ title, subTitle, children }: any) {
   return (
     <Container>
       <Box
@@ -12,6 +12,9 @@ export default function Layout({ title, children }: any) {
       >
         <Typography variant="h3">{title}</Typography>
       </Box>
+      <Typography variant="caption" color="textSecondary">
+        {subTitle}
+      </Typography>
       {children}
       <Box display="flex" justifyContent="center" mt={4}>
         <Typography color="red">Market Oportunity</Typography>
