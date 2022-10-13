@@ -7,7 +7,7 @@ import { getPool, getPools } from "../src/service/api";
 import { GetStaticPaths } from "next";
 import Layout from "../src/components/Layout";
 
-export default function History({ pool }: any) {
+export default function History({ pool, date }: any) {
   const options = {
     title: {
       text: "Historical TVL - Last 7 days",
@@ -26,7 +26,7 @@ export default function History({ pool }: any) {
   };
 
   return (
-    <Layout title="History of Pool TVL" subTitle="Historical TVL - Last 7 days">
+    <Layout title={`Updated At: ${date}`} subTitle="Historical TVL - Last 7 days">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </Layout>
   );
@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -53,7 +53,8 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       pool: pool.data,
+      date: new Date().toLocaleTimeString(),
     },
-    revalidate: 300,
+    revalidate: 60,
   };
 }
